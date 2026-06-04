@@ -1,59 +1,91 @@
 # TaskFlow
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.14.
+A kanban board application built with Angular, designed for managing tasks across different workflow stages.
 
-## Development server
+## Overview
 
-To start a local development server, run:
+TaskFlow is a task management tool that organizes work into three columns: **To Do**, **In Progress**, and **Done**. Each task flows through the board as it progresses, providing a clear visual overview of work status.
 
-```bash
-ng serve
+## Tech Stack
+
+- **Angular 19** — component-based frontend framework
+- **TypeScript** — type-safe development
+- **Angular Signals** — reactive state management
+- **CSS** — scoped component styling
+
+## Project Structure
+
+```
+src/app/
+├── app.ts                 # Root component — holds task data, filters by status
+├── app.html               # Board layout with three columns
+├── app.css                # Global board styling (flexbox layout)
+├── task.model.ts          # Task interface definition
+├── column/
+│   ├── column.ts          # Column component — receives title and tasks via input
+│   ├── column.html        # Renders column header and task cards
+│   └── column.css         # Column styling (background, border-radius)
+└── task-card/
+    ├── task-card.ts       # Task card component — displays a single task
+    ├── task-card.html     # Task title and description layout
+    └── task-card.css      # Card styling (shadow, spacing)
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Architecture
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+App (data owner)
+ ├── Column "To Do"       ← receives filtered tasks
+ │    └── TaskCard         ← displays single task
+ ├── Column "In Progress"  ← receives filtered tasks
+ │    └── TaskCard
+ └── Column "Done"         ← receives filtered tasks
+      └── TaskCard
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Data flows top-down: `App` holds all tasks, filters them by status using `computed()` signals, and passes the filtered arrays to each `Column` via `input()`. Each `Column` iterates over its tasks with `*ngFor` and renders a `TaskCard` for each one.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18+)
+- npm
+
+### Installation
 
 ```bash
-ng generate --help
+git clone https://github.com/yairMar1/task-flow.git
+cd task-flow
+npm install
 ```
 
-## Building
-
-To build the project run:
+### Development Server
 
 ```bash
-ng build
+npx ng serve
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Navigate to `http://localhost:4200/`. The app automatically reloads on file changes.
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### Build
 
 ```bash
-ng test
+npx ng build
 ```
 
-## Running end-to-end tests
+Build artifacts are stored in the `dist/` directory.
 
-For end-to-end (e2e) testing, run:
+## Roadmap
 
-```bash
-ng e2e
-```
+- [ ] Task service for centralized state management
+- [ ] Add / edit / delete tasks via reactive forms
+- [ ] Routing between board view and task detail view
+- [ ] HTTP client integration with backend API
+- [ ] Drag and drop between columns (Angular CDK)
+- [ ] Interceptors, error handling, and signals optimization
+- [ ] Deployment to Vercel / Netlify
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## License
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+This project is for educational purposes.
