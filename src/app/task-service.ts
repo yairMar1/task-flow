@@ -16,6 +16,18 @@ export class TaskService {
   this.tasks.update(tasks => [...tasks, newTask]);
   }
 
+  removeTask(id: number) {
+    this.tasks.update(tasks => tasks.filter(task => task.id !== id));
+  }
+
+  updateTask(id: number, updatedFields: Partial<Task>) {
+    this.tasks.update(tasks => 
+      tasks.map(task => 
+        task.id === id ? { ...task, ...updatedFields } : task
+      )
+    );
+  }
+
   todoTasks = computed(() => this.tasks().filter(task => task.status === 'To Do'));
   inProgressTasks = computed(() => this.tasks().filter(task => task.status === 'In Progress'));
   doneTasks = computed(() => this.tasks().filter(task => task.status === 'Done'));

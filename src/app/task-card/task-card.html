@@ -1,2 +1,14 @@
+@if(isEditing()){
+    <input [value]="editTitle()" (input)="editTitle.set($any($event.target).value)" />
+    <input [value]="editDescription()" (input)="editDescription.set($any($event.target).value)" />
+    <div class="actions">
+        <button class="btn-save" (click)="onSave()">Save</button>
+    </div>
+} @else {
 <p>{{task()?.title}}</p>
 <p>{{task()?.description}}</p>
+<div class="actions">
+    <button class="btn-edit" (click)="onEdit()">Edit</button>
+    <button class="btn-delete" (click)="onDelete()">Delete</button>
+</div>
+}

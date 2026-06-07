@@ -21,3 +21,58 @@ p:last-child {
   font-size: 12px;
   color: #666;
 }
+
+.actions {
+  display: flex;
+  gap: 6px;
+}
+
+button {
+  padding: 4px 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.btn-edit {
+  background: #e8f0fe;
+  color: #1a73e8;
+}
+
+.btn-edit:hover {
+  background: #d2e3fc;
+}
+
+.btn-delete {
+  background: #fce8e6;
+  color: #d93025;
+}
+
+.btn-delete:hover {
+  background: #f5c6c2;
+}
+
+.btn-save {
+  background: #e6f4ea;
+  color: #1e8e3e;
+}
+
+.btn-save:hover {
+  background: #ceead6;
+}
+
+input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+  margin-bottom: 6px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border-color: #4a90d9;
+}
