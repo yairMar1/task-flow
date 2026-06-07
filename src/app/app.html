@@ -1,6 +1,6 @@
 <h1>{{title()}}</h1>
 <div class="board">
-    <app-column title="To Do" [tasks]="todoTasks()"></app-column>
-    <app-column title="In Progress" [tasks]="inProgressTasks()"></app-column>
-    <app-column title="Done" [tasks]="doneTasks()"></app-column>
+    <app-column title="To Do" [tasks]="taskService.todoTasks()"></app-column>
+    <app-column title="In Progress" [tasks]="taskService.inProgressTasks()"></app-column>
+    <app-column title="Done" [tasks]="taskService.doneTasks()"></app-column>
 </div>
