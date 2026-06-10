@@ -1,7 +1,7 @@
 <h1>{{title()}}</h1>
 <app-add-task></app-add-task>
-<div class="board">
-    <app-column title="To Do" [tasks]="taskService.todoTasks()"></app-column>
-    <app-column title="In Progress" [tasks]="taskService.inProgressTasks()"></app-column>
-    <app-column title="Done" [tasks]="taskService.doneTasks()"></app-column>
+<div class="board" cdkDropListGroup>
+    <app-column title="To Do" status="To Do" [tasks]="taskService.todoTasks()"></app-column>
+    <app-column title="In Progress" status="In Progress" [tasks]="taskService.inProgressTasks()"></app-column>
+    <app-column title="Done" status="Done" [tasks]="taskService.doneTasks()"></app-column>
 </div>
